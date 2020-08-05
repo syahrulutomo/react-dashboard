@@ -1,0 +1,35 @@
+.burger-button {
+  width: 24px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  span {
+    background-color: #C5C5C5;
+    width: 24px;
+    height: 3px;
+
+    &:after {
+      content: '';
+      background-color: #C5C5C5;
+      width: 16px;
+      height: 3px;
+      position: absolute;
+      top: 8px;
+      left: 0;
+    }
+
+    &:before {
+      content: '';
+      background-color: #C5C5C5;
+      width: 24px;
+      height: 3px;
+      position: absolute;
+      top: -8px;
+      left: 0;
+    }
+  }
+
+
+}

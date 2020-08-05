@@ -8,7 +8,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ['react-hooks'],
+  plugins: ['react-hooks', 'material-ui'],
   rules: {
     'linebreak-style': 0,
     'no-else-return': 0,
@@ -56,7 +56,6 @@ module.exports = {
         },
       },
     ],
-    'jsx-a11y/no-static-element-interactions': [0],
     'no-prototype-builtins': 0,
     'react/sort-comp': [
       2,
@@ -76,6 +75,7 @@ module.exports = {
       },
     ],
     'react-hooks/rules-of-hooks': 'error',
+    'react/jsx-props-no-spreading': 'off',
   },
   globals: {
     window: true,
