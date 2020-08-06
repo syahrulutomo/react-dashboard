@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { DefaultLayout } from '@/components';
+import Accordion from '@material-ui/core/Accordion';
+import IconButton from '@material-ui/core/IconButton';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { DefaultLayout, DateRangePicker } from '@/components';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import calendar from '@/assets/images/calendar.png';
 import help from '@/assets/images/Help.png';
+import { connect } from 'react-redux';
+import {format} from 'date-fns';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -27,13 +34,25 @@ const useStyles = makeStyles(() => ({
   },
   filterDate: {
     boxSizing: 'border-box',
-    minWidth: '481px',
+    width: '742px',
     height: '48px',
     boxShadow: '0px 2px 3px #00000029',
     borderRadius: '2px',
     padding: '13px 16px',
     display: 'flex',
     alignItems: 'center',
+    borderBottomLeftRadius: '0 !important',
+    borderBottomRightRadius: '0 !important',
+    margin: '0 !important',
+
+    '&:before': {
+      backgroundColor: 'transparent',
+    }
+  },
+  filterDateContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
   },
   periodText: {
     fontSize: '16px',
@@ -48,7 +67,10 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Open sans, sans-serif',
     color: '#6A6A6A',
     fontWeight: '400',
-    marginRight: '10px',
+
+    '&:hover': {
+      cursor: "pointer",
+   },
   },
   cardInsight: {
     boxSizing: 'border-box',
@@ -86,10 +108,18 @@ const useStyles = makeStyles(() => ({
     opacity: '.8',
     marginRight: '10px',
   },
+  closeButton: {
+    position: 'absolute',
+    right: '0px'
+  }
 }));
 
-export default function HomeView() {
+function HomeView(props) {
+  const { startDate, endDate } = props;
   const classes = useStyles();
+
+  const [isOpen, setIsOpen] = useState(true);
+  const [dateRange, setDateRange] = useState({});
 
   return (
     <DefaultLayout>
@@ -97,16 +127,28 @@ export default function HomeView() {
         <div className={classes.filterSection}>
           <h1 className={classes.title}>Dashboard</h1>
           <div className={classes.flexGrow} />
-          <Card className={classes.filterDate}>
-            {
-              calendar
-                ? <img src={calendar} alt="calendar icon" />
-                : ''
-            }
-            <span className={classes.periodText}>Period</span>
-            <span className={classes.dateText}>11 September 2018 - 14 September 2018</span>
-            <ExpandMoreIcon style={{ fontSize: '30px', color: '#757575' }} />
-          </Card>
+            <Accordion className={classes.filterDate}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                style={{ width: '100%' }}
+              >
+                <div className={classes.filterDateContainer}>
+                  {
+                    calendar
+                      ? <img src={calendar} alt="calendar icon" />
+                      : ''
+                  }
+                  <span className={classes.periodText}>Period</span>
+                  <span className={classes.dateText}> <span style={{ marginRight: '8px' }}>{ dateRange.startDate ? format(dateRange.startDate, 'DD MMMM YYYY'): '' }</span> - <span style={{ marginLeft: '8px' }}>{ dateRange.endDate ? format(dateRange.endDate, 'DD MMMM YYYY') : '' }</span> </span>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                <DateRangePicker open={isOpen} onChange={(range) => setDateRange(range)} style={{
+                  position: 'absolute', right: '-1px', top: '48px', boxShadow: '0px 2px 3px #00000029', borderTopLeft: '0px', borderTopRight: '0px' }}/>
+              </AccordionDetails>
+            </Accordion>
         </div>
         <Card className={classes.cardInsight}>
           <span className={classes.insightTitle}>MARKET INSIGHTS</span>
@@ -117,9 +159,21 @@ export default function HomeView() {
             <ExpandLessIcon style={{ fontSize: '30px', color: '#FFF' }} />
           </div>
         </Card>
-        <Card className={classes.turnoverWrapper}>
-        </Card>
       </div>
     </DefaultLayout>
   );
 }
+
+HomeView.propTypes = {
+  startDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  endDate: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+}
+
+const mapStateToProps = (state) => {
+  return {
+    startDate: state.filterDate.startDate,
+    endDate: state.filterDate.endDate,
+  }
+}
+
+export default connect(mapStateToProps)(HomeView);

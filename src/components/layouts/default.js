@@ -24,12 +24,12 @@ const useStyles = makeStyles(() => ({
     height: 'calc(100% - 96px)',
     backgroundColor: '#F7F7F7',
     zIndex: '-1',
-    transition: 'margin-left .5s ease',
+    transition: 'margin-left .1s ease-in',
   },
   show: {
     marginLeft: '72px !important',
     width: 'calc(100% - 72px)',
-    transition: 'margin-left .5s ease',
+    transition: 'margin-left .1s ease-out',
   },
 }));
 

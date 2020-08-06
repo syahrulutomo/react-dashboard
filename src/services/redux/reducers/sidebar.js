@@ -2,7 +2,7 @@ import { updateObject } from '@/utilities';
 import * as actionTypes from '../actions/action-types';
 
 const initialState = {
-  open: false,
+  open: true,
 };
 
 const openSidebar = (state) => {

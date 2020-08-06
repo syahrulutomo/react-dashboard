@@ -120,7 +120,6 @@ function Sidebar(props) {
 
           )
           : (
-
             <IconButton
               className={classes.burgerButton}
               onClick={handleDrawerOpen}
@@ -130,7 +129,6 @@ function Sidebar(props) {
             >
               <Burger />
             </IconButton>
-
           )
       }
 

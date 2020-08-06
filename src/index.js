@@ -6,6 +6,7 @@ import {
 } from 'redux';
 
 import sidebarReducer from '@/services/redux/reducers/sidebar';
+import filterDateReducer from '@/services/redux/reducers/filter-date';
 import { Routes } from './routes';
 
 import 'normalize.css';
@@ -13,6 +14,7 @@ import './assets/styles/index.scss';
 
 const rootReducer = combineReducers({
   sidebar: sidebarReducer,
+  filterDate: filterDateReducer,
 });
 
 const store = createStore(rootReducer);
