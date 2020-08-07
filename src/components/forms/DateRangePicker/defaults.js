@@ -30,7 +30,7 @@ const getDefaultRanges = (date) => [
 		endDate: endOfMonth(date, -1)
 	},
 	{
-		label: "This Month",
+		label: "This month",
 		startDate: startOfMonth(date),
 		endDate: endOfMonth(date)
   },

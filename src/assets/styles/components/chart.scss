@@ -1,0 +1,26 @@
+#chartjs-tooltip {
+  background-color: #ffffff;
+  border: 1px solid #FFE854;
+
+  thead tr th{
+    text-align: left;
+    font-family: 'Open sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #43425D;
+    padding: 0 0 8px 0;
+  }
+
+  tbody tr td {
+    padding: 0 0 8px 0;
+  }
+}
+
+.chartjs-tooltip-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+  border-radius: 10px
+}
+
