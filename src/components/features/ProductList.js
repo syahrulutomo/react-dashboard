@@ -7,25 +7,33 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import danone from '@/assets/images/frisianflag.png';
 
-const useStyles = makeStyles(() => ({
-  productsContainer: {
-    boxShadow: '0px 2px 6px #0000000A',
-    border: '0.5px solid #CACED5',
-    borderRadius: '2px',
-    padding: '16px',
-    margin: '16px 16px 0 0',
-    minWidth: '275px'
-  },
-  productsHeader: {
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
-  flexGrow: {
-    flexGrow: 1,
-  },
-}));
-
 export function ProductList() {
+  const useStyles = makeStyles(() => ({
+    productsContainer: {
+      boxShadow: '0px 2px 6px #0000000A',
+      border: '0.5px solid #CACED5',
+      borderRadius: '2px',
+      padding: '16px',
+      margin: '16px 16px 0 0',
+      minWidth: '275px'
+    },
+    productsHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '16px',
+    },
+    flexGrow: {
+      flexGrow: 1,
+    },
+    productTitle: {
+      fontFamily: 'Source Sans Pro, sans-serif',
+      fontSize: '20px',
+      color: '#4D4F5C',
+      fontWeight: 'normal',
+      margin: 0,
+    }
+  }));
+  
   const classes = useStyles();
 
   const list = [
@@ -87,7 +95,7 @@ export function ProductList() {
   return (
     <Card className={classes.productsContainer}>
       <div className={classes.productsHeader}>
-        <Typography variant='h6' color='initial'>BEST SELLING SKU</Typography>
+        <p className={classes.productTitle}>BEST SELLING SKU</p>
         <div className={classes.flexGrow} />
         <MoreVertIcon style={{ color: '#6A6A6A', fontSize: '20px' }} />
       </div>

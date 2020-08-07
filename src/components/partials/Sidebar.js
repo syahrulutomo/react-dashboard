@@ -11,75 +11,76 @@ import chart from '@/assets/images/Dashboard icon.svg';
 import { connect } from 'react-redux';
 import { openSidebar, closeSidebar } from '@/services/redux/actions/sidebar';
 
-const drawerWidth = 72;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    border: '0.5px solid #D2D2D2',
-    zIndex: 99,
-  },
-  burgerButton: {
-    backgroundColor: 'transparent !important',
-    padding: '24px 0 0 24px',
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    height: 'calc(100% - 64px)',
-    marginTop: '64px',
-    border: '0.5px solid #D2D2D2',
-    borderTop: 'none',
-    zIndex: 99,
-  },
-  drawerHeader: {
-    boxSizing: 'border-box',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing(3, 3, 0, 3),
-    marginBottom: '-10px',
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  list: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  listItem: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '14px 24px',
-  },
-  listItemIcon: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-}));
 
 function Sidebar(props) {
+  const drawerWidth = 72;
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+    },
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+      border: '0.5px solid #D2D2D2',
+      zIndex: 99,
+    },
+    burgerButton: {
+      backgroundColor: 'transparent !important',
+      padding: '24px 0 0 24px',
+    },
+    drawerPaper: {
+      width: drawerWidth,
+      height: 'calc(100% - 64px)',
+      marginTop: '64px',
+      border: '0.5px solid #D2D2D2',
+      borderTop: 'none',
+      zIndex: 99,
+    },
+    drawerHeader: {
+      boxSizing: 'border-box',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: theme.spacing(3, 3, 0, 3),
+      marginBottom: '-10px',
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+    },
+    list: {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+    listItem: {
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '14px 24px',
+    },
+    listItemIcon: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+  }));
+
   const { open, onOpenSidebar, onCloseSidebar } = props;
   const classes = useStyles();
   const menuList = [

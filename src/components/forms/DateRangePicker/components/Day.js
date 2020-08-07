@@ -4,43 +4,43 @@ import PropTypes from 'prop-types';
 import { IconButton, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  leftBorderRadius: {
-    borderRadius: '50% 0 0 50%',
-  },
-  rightBorderRadius: {
-    borderRadius: '0 50% 50% 0',
-  },
-  buttonContainer: {
-    display: 'flex',
-  },
-  button: {
-    height: 36,
-    width: 36,
-    padding: 0,
-  },
-  buttonText: {
-    lineHeight: 1.6,
-  },
-  outlined: {
-    border: `1px solid #289E45`,
-  },
-  filled: {
-    '&:hover': {
-      backgroundColor: '#37B04C',
-      color: '#8B8B8B',
-    },
-    backgroundColor: '#289E45',
-  },
-  highlighted: {
-    backgroundColor: '#EAF0F4',
-  },
-  contrast: {
-    color: theme.palette.primary.contrastText,
-  },
-}));
-
 const Day = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    leftBorderRadius: {
+      borderRadius: '50% 0 0 50%',
+    },
+    rightBorderRadius: {
+      borderRadius: '0 50% 50% 0',
+    },
+    buttonContainer: {
+      display: 'flex',
+    },
+    button: {
+      height: 36,
+      width: 36,
+      padding: 0,
+    },
+    buttonText: {
+      lineHeight: 1.6,
+    },
+    outlined: {
+      border: `1px solid #289E45`,
+    },
+    filled: {
+      '&:hover': {
+        backgroundColor: '#37B04C',
+        color: '#8B8B8B',
+      },
+      backgroundColor: '#289E45',
+    },
+    highlighted: {
+      backgroundColor: '#EAF0F4',
+    },
+    contrast: {
+      color: theme.palette.primary.contrastText,
+    },
+  }));
+  
   const {
     filled,
     outlined,

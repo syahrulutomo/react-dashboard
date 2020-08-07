@@ -18,29 +18,31 @@ export const MARKERS = {
   SECOND_MONTH: Symbol('secondMonth'),
 };
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    boxSizing: 'border-box',
-    padding: '20px 70px',
-  },
-  headerItem: {
-    flex: 1,
-    textAlign: 'center',
-  },
-  divider: {
-    borderLeft: `1px solid #D7DAE2`,
-    marginBottom: 20,
-  },
-  dividerBold: {
-    borderLeft: `2px solid #D7DAE2`,
-    marginBottom: 20,
-  },
-  monthContainer: {
-    paddingTop: '16px',
-  }
-}));
+
 
 const Menu = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    header: {
+      boxSizing: 'border-box',
+      padding: '20px 70px',
+    },
+    headerItem: {
+      flex: 1,
+      textAlign: 'center',
+    },
+    divider: {
+      borderLeft: `1px solid #D7DAE2`,
+      marginBottom: 20,
+    },
+    dividerBold: {
+      borderLeft: `2px solid #D7DAE2`,
+      marginBottom: 20,
+    },
+    monthContainer: {
+      paddingTop: '16px',
+    }
+  }));
+  
   const {
     ranges,
     dateRange,

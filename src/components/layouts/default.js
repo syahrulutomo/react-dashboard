@@ -5,35 +5,36 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Header, Sidebar } from '@/components/partials';
 import { connect } from 'react-redux';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    paddingTop: 56,
-    height: '100%',
-  },
-  shiftContent: {
-    paddingLeft: 240,
-  },
-  content: {
-    boxSizing: 'border-box',
-    position: 'absolute',
-    marginLeft: '0',
-    paddingLeft: '24px',
-    paddingRight: '24px',
-    paddingTop: '32px',
-    width: '100%',
-    height: 'calc(100% - 96px)',
-    backgroundColor: '#F7F7F7',
-    zIndex: '-1',
-    transition: 'margin-left .1s ease-in',
-  },
-  show: {
-    marginLeft: '72px !important',
-    width: 'calc(100% - 72px)',
-    transition: 'margin-left .1s ease-out',
-  },
-}));
 
 function DefaultLayout(props) {
+  const useStyles = makeStyles(() => ({
+    root: {
+      paddingTop: 56,
+      height: '100%',
+    },
+    shiftContent: {
+      paddingLeft: 240,
+    },
+    content: {
+      boxSizing: 'border-box',
+      position: 'absolute',
+      marginLeft: '0',
+      paddingLeft: '24px',
+      paddingRight: '24px',
+      paddingTop: '32px',
+      width: '100%',
+      height: 'calc(100% - 96px)',
+      backgroundColor: '#F7F7F7',
+      zIndex: '-1',
+      transition: 'margin-left .1s ease-in',
+    },
+    show: {
+      marginLeft: '72px !important',
+      width: 'calc(100% - 72px)',
+      transition: 'margin-left .1s ease-out',
+    },
+  }));
+  
   const { children, open } = props;
 
   const classes = useStyles();

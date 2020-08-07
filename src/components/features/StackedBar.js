@@ -8,19 +8,18 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   stackedbarContainer: {
     boxSizing: 'border-box',
+    minWidth: '570px',
     maxHeight: '600px',
     boxShadow: 'none',
   },
   legendContainer: {
     display: 'flex',
-    flexWrap: 'nowrap',
     padding: '16px'
   },
   legend: {
     display: 'flex',
-    flexWrap: 'wrap',
     alignItems: 'center',
-    marginRight: '32px',
+    marginRight: '12px',
     
     '&:last-of-type': {
       marginRight: 0,
@@ -38,6 +37,7 @@ const useStyles = makeStyles(() => ({
     opacity: '.5',
     fontSize: '12px',
     fontFamily: 'Source Sans Pro, sans-serif',  
+    margin: 0,
   }
 }));
 
@@ -48,12 +48,14 @@ export function StackedBar() {
 
   const [legends, setLegends] = useState([]);
   const [mappedLegends, setMappedLegends] = useState([]);
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const options = {
     responsive: true,
     maintainAspectRatio: true,
     animation: false,
-    legend: { display: false },
+    legend: { display: true },
     cornerRadius: 20,
     tooltips: {
       cornerRadius: 8,
@@ -183,6 +185,19 @@ export function StackedBar() {
             if (labels.indexOf(labelItem.text) > -1) return true;
           }
         },
+        legendCallback: function(chart) {
+          const ul = document.createElement('ul');
+          const borderColor = chart.data.datasets[0].borderColor;
+          chart.data.labels.forEach(function(label, index) {
+             ul.innerHTML += `
+               <li>
+                  <span style="background-color: ${borderColor[index]}"></span>
+                   ${label}
+                </li>
+             `;
+          });
+          return ul.outerHTML;
+       },
         scales: {
           yAxes: [{
             display: false,
@@ -246,7 +261,7 @@ export function StackedBar() {
           backgroundColor: '#37B04C',
           borderColor: '#37B04C',
           data: [18000, 23000, 19000, 27000, 29000, 23000, 15000],
-          order: 3,
+          order: 2,
           barThickness: 25,
           maxBarThickness: 35,
           barPercentage: 0.5,
@@ -256,8 +271,8 @@ export function StackedBar() {
           label: 'Gross',
           backgroundColor: '#289E45',
           borderColor: '#289E45',
-          data: [29000, 25000, 22000, 29000, 30000, 25000, 19000],
-          order: 2,
+          data: [30000, 26000, 15000, 29000, 30000, 25000, 19000],
+          order: 3,
           barThickness: 25,
           maxBarThickness: 35,
           barPercentage: 0.5,
@@ -293,10 +308,13 @@ export function StackedBar() {
         }
       ]
     }
-
+   
+    useEffect(() => { 
+      forceUpdate();
+    },[])
 
     useEffect(() => {
-      if(chartRef) {
+      if(chartRef.current.chartInstance.legend.legendItems) {
         const legends = chartRef.current.chartInstance.legend.legendItems;
         setLegends(legends);
       }
@@ -306,7 +324,7 @@ export function StackedBar() {
       if(legends.length > 0) {
         const templates = legends.filter(l => l.text !== 'line').map(l => {
           return (
-            <Grid key={l.text} className={classes.legend} alignItems='center'>
+            <Grid container={true} key={l.text} className={classes.legend} direction='row' justify="flex-start" wrap="nowrap"  alignItems='center' style={{ width: 'unset' }}>
               <span className={classes.pointer} style={{backgroundColor: l.strokeStyle, marginTop: '4px'}}></span>
               <Typography className={classes.legendLabel} variant='caption' color='initial'>{l.text}</Typography>
             </Grid>
@@ -314,7 +332,7 @@ export function StackedBar() {
         });
         setMappedLegends(templates);
       }
-    }, [legends])
+    }, [legends, chartRef])
 
   return (
     <Card className={classes.stackedbarContainer}>
@@ -323,9 +341,12 @@ export function StackedBar() {
         data={data}
         options={options}
       />
-      <Grid className={classes.legendContainer}>
-        {mappedLegends}
-      </Grid>
+      <div className={classes.legendContainer}>
+        {
+          legends.length > 0 ?
+          mappedLegends : ''
+        }
+      </div>
     </Card>
   );
 }

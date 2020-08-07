@@ -16,22 +16,6 @@ import {
 import { classes } from 'istanbul-lib-coverage';
 // import { useStyles } from '@material-ui/pickers/views/Calendar/Day';
 
-const useStyles = makeStyles({
-  iconContainer: {
-    padding: 5,
-  },
-  icon: {
-    padding: 10,
-    '&:hover': {
-      background: 'none',
-    },
-  },
-  month: {
-    fontWeight: '700',
-    fontFamily: 'Open Sans, sans-serif',
-    color: '#000000DE',
-  }
-});
 
 const MONTHS = [
   'Jan',
@@ -56,6 +40,23 @@ const generateYears = (relativeTo, count) => {
 };
 
 const Header = (props) => {
+  const useStyles = makeStyles({
+    iconContainer: {
+      padding: 5,
+    },
+    icon: {
+      padding: 10,
+      '&:hover': {
+        background: 'none',
+      },
+    },
+    month: {
+      fontWeight: '700',
+      fontFamily: 'Open Sans, sans-serif',
+      color: '#000000DE',
+    }
+  });
+  
   const {
     date,
     // classes,

@@ -5,51 +5,6 @@ import { List, ListItem, ListItemText, Button, Typography } from '@material-ui/c
 import { isSameDay } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    boxSizing: 'border-box',
-    width: '160px',
-  },
-  listItem: {
-    paddingLeft: '16px',
-    paddingRight: '16px',
-    background: '#FFF',
-    position: 'relative',
-  },
-  selected: {
-    backgroundColor: '#289E45',
-
-    '&:hover': {
-      backgroundColor: '#37B04C',
-    }
-  },
-  text: {
-    color: '#8B8B8B'
-  },
-  textSelected: {
-    color: '#FFF !important',
-  },
-  divider: {
-    width: '80%',
-    position: 'absolute',
-    bottom: '0px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    borderBottom: '1px solid #D2D2D2',
-  },
-  button: {
-    width: '100%',
-    backgroundColor: '#37B04C',
-    color: '#FFF',
-    marginTop: '16px',
-    padding: '8px 0',
-
-    '&:hover': {
-      backgroundColor: '#279D44',
-    }
-  }
-}));
-
 const isSameRange = (first, second) => {
   const { startDate: fStart, endDate: fEnd } = first;
   const { startDate: sStart, endDate: sEnd } = second;
@@ -60,6 +15,51 @@ const isSameRange = (first, second) => {
 };
 
 const DefinedRanges = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      boxSizing: 'border-box',
+      width: '160px',
+    },
+    listItem: {
+      paddingLeft: '16px',
+      paddingRight: '16px',
+      background: '#FFF',
+      position: 'relative',
+    },
+    selected: {
+      backgroundColor: '#289E45',
+  
+      '&:hover': {
+        backgroundColor: '#37B04C',
+      }
+    },
+    text: {
+      color: '#8B8B8B'
+    },
+    textSelected: {
+      color: '#FFF !important',
+    },
+    divider: {
+      width: '80%',
+      position: 'absolute',
+      bottom: '0px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      borderBottom: '1px solid #D2D2D2',
+    },
+    button: {
+      width: '100%',
+      backgroundColor: '#37B04C',
+      color: '#FFF',
+      marginTop: '16px',
+      padding: '8px 0',
+  
+      '&:hover': {
+        backgroundColor: '#279D44',
+      }
+    }
+  }));
+  
   const {
     setRange,
     selectedRange,

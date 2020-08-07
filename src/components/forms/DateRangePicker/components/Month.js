@@ -23,26 +23,26 @@ import Day from './Day';
 
 const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '290px',
-  },
-  weekDaysContainer: {
-    marginTop: '10px',
-    marginLeft: '20px',
-    marginRight: '20px',
-    paddingBottom: '12px',
-    borderBottom: '1px solid #EAF0F4',
-  },
-  daysContainer: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    marginTop: 15,
-    marginBottom: 20,
-  },
-}));
-
 const Month = (props) => {
+  const useStyles = makeStyles(() => ({
+    root: {
+      width: '290px',
+    },
+    weekDaysContainer: {
+      marginTop: '10px',
+      marginLeft: '20px',
+      marginRight: '20px',
+      paddingBottom: '12px',
+      borderBottom: '1px solid #EAF0F4',
+    },
+    daysContainer: {
+      paddingLeft: 15,
+      paddingRight: 15,
+      marginTop: 15,
+      marginBottom: 20,
+    },
+  }));
+  
   const {
     value,
     marker,
