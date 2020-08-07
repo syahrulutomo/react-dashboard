@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#37B04C',
     color: '#FFF',
     marginTop: '16px',
+    padding: '8px 0',
 
     '&:hover': {
       backgroundColor: '#279D44',
@@ -96,7 +97,7 @@ const DefinedRanges = (props) => {
       ))}
       <ListItem>
         <Button className={classes.button} onClick={() => setRange(tempRange)}>
-          <Typography variant='body1' style={{color: '#FFF', fontWeight: 'bold'}}>Apply</Typography>
+          <span style={{color: '#FFF', fontWeight: 'bold'}}>Apply</span>
         </Button>
       </ListItem>
     </List>

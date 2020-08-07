@@ -18,9 +18,13 @@ const useStyles = makeStyles(() => ({
   },
   legend: {
     display: 'flex',
-    flexWrap: 'nowrap',
+    flexWrap: 'wrap',
     alignItems: 'center',
-    marginRight: '32px'
+    marginRight: '32px',
+    
+    '&:last-of-type': {
+      marginRight: 0,
+    }
   },
   pointer: {
     width: '18px',
@@ -28,6 +32,12 @@ const useStyles = makeStyles(() => ({
     borderRadius: '8px',
     marginRight: '10px',
     marginBottom: '2px'
+  },
+  legendLabel: {
+    color: '#4D4F5C',
+    opacity: '.5',
+    fontSize: '12px',
+    fontFamily: 'Source Sans Pro, sans-serif',  
   }
 }));
 
@@ -36,6 +46,7 @@ export function StackedBar() {
 
   const classes = useStyles();
 
+  const [legends, setLegends] = useState([]);
   const [mappedLegends, setMappedLegends] = useState([]);
 
   const options = {
@@ -287,19 +298,23 @@ export function StackedBar() {
     useEffect(() => {
       if(chartRef) {
         const legends = chartRef.current.chartInstance.legend.legendItems;
-        if(legends.length > 0) {
-          const templates = legends.filter(l => l.text !== 'line').map(l => {
-            return (
-              <Grid key={l.text} className={classes.legend}>
-                <span className={classes.pointer} style={{backgroundColor: l.strokeStyle}}></span>
-                <Typography variant='caption' color='initial'>{l.text}</Typography>
-              </Grid>
-            )
-          });
-          setMappedLegends(templates);
-        }
+        setLegends(legends);
       }
-    }, []);
+    }, [chartRef]);
+
+    useEffect(() => {
+      if(legends.length > 0) {
+        const templates = legends.filter(l => l.text !== 'line').map(l => {
+          return (
+            <Grid key={l.text} className={classes.legend} alignItems='center'>
+              <span className={classes.pointer} style={{backgroundColor: l.strokeStyle, marginTop: '4px'}}></span>
+              <Typography className={classes.legendLabel} variant='caption' color='initial'>{l.text}</Typography>
+            </Grid>
+          )
+        });
+        setMappedLegends(templates);
+      }
+    }, [legends])
 
   return (
     <Card className={classes.stackedbarContainer}>
