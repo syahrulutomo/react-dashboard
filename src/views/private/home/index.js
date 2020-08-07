@@ -19,6 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import cartIcon from '@/assets/images/cart.png';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -125,6 +126,10 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  turnoverValue: {
+    color: '#000000DE',
+    fontWeight: '700',  
+  },
   chartContainer: {
     boxSizing: 'border-box',
     marginTop: '16px',
@@ -210,15 +215,18 @@ function HomeView(props) {
               <Typography variant='body2' style={{ color: '#8B8B8B' }}>Sales Turnover</Typography>
               <MoreVertIcon style={{ color: '#6A6A6A', fontSize: '22px' }} />
             </Grid>
-            <Grid>
-              <div>
-                <Typography variant='h5' style={{ color: '#000000DE' }}>Rp 3,600,000</Typography>
-                <Grid container alignItems='center'>
+            <Grid container direction='row' justify="flex-start">
+              <Grid container direction='row' justify="flex-start" alignItems="center" wrap="wrap" style={{ width: '75%' }}>
+                <Typography className={classes.turnoverValue} variant='h5' style={{ color: '#000000DE' }}>Rp 3,600,000</Typography>
+                <Grid container direction='row' justify="flex-start" alignItems="center">
                   <KeyboardBackspaceIcon color='error' style={{ fontSize: '14px', fontWeight: 'bold', transform: 'rotate(-90deg)', marginBottom: '4px' }}/>
                   <Typography variant='caption' color='error' style={{ marginRight: '4px', fontWeight: 'bold' }}>13.8%</Typography>
-                  <Typography variant='caption' style={{ color: '#8B8B8B' }}>last period in products sold</Typography>
+                  <Typography variant='caption' style={{ color: '#8B8B8B', fontSize: '10px' }}>last period in products sold</Typography>
                 </Grid>
-              </div>
+              </Grid>
+              <Grid style={{ marginTop: '4px' }}>
+                <img src={cartIcon} alt='cart' style={{ width: '48px' }}/>
+              </Grid>
             </Grid>
           </Card>
         </Grid>

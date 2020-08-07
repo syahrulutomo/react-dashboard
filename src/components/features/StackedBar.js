@@ -41,7 +41,7 @@ export function StackedBar() {
   const options = {
     responsive: true,
     maintainAspectRatio: true,
-    animation: true,
+    animation: false,
     legend: { display: false },
     cornerRadius: 20,
     tooltips: {
@@ -164,27 +164,14 @@ export function StackedBar() {
       legend: {
         display: false,
         position: 'bottom',
-        // labels: {
-        //   boxWidth: 30,
-        //   fontColor: '#333',
-        //   filter: function(labelItem) {
-        //     const labels = ['Nett', 'Gross', 'Unit per Transaction', 'Average Purchase Value'];
-        //     if (labels.indexOf(labelItem.text) > -1) return true;
-        //   }
-        // }
-        legendCallback: function(chart) {
-          const ul = document.createElement('ul');
-          const borderColor = chart.data.datasets[0].borderColor;
-          chart.data.labels.forEach(function(label, index) {
-             ul.innerHTML += `
-               <li>
-                  <span style="background-color: ${borderColor[index]}"></span>
-                   ${label}
-                </li>
-             `;
-          });
-          return ul.outerHTML;
-       },
+        labels: {
+          boxWidth: 30,
+          fontColor: '#333',
+          filter: function(labelItem) {
+            const labels = ['Nett', 'Gross', 'Unit per Transaction', 'Average Purchase Value'];
+            if (labels.indexOf(labelItem.text) > -1) return true;
+          }
+        },
         scales: {
           yAxes: [{
             display: false,
@@ -210,10 +197,6 @@ export function StackedBar() {
         xAxes: [
           {
             stacked: true,
-            barThickness: 25,
-            maxBarThickness: 35,
-            barPercentage: 0.5,
-            categoryPercentage: 0.5,
             ticks: {
               fontColor: '#43425D'
             },
@@ -252,14 +235,22 @@ export function StackedBar() {
           backgroundColor: '#37B04C',
           borderColor: '#37B04C',
           data: [18000, 23000, 19000, 27000, 29000, 23000, 15000],
-          order: 3
+          order: 3,
+          barThickness: 25,
+          maxBarThickness: 35,
+          barPercentage: 0.5,
+          categoryPercentage: 0.5,
         },
         {
           label: 'Gross',
           backgroundColor: '#289E45',
           borderColor: '#289E45',
-          data: [11000, 20000, 12000, 29000, 30000, 25000, 13000],
-          order: 2
+          data: [29000, 25000, 22000, 29000, 30000, 25000, 19000],
+          order: 2,
+          barThickness: 25,
+          maxBarThickness: 35,
+          barPercentage: 0.5,
+          categoryPercentage: 0.5,
         },
         {
           label: 'Average Purchase Value',
